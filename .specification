@@ -1,0 +1,118 @@
+--- !ruby/object:Gem::Specification 
+name: delayed_form_observer
+version: !ruby/object:Gem::Version 
+  hash: 27
+  prerelease: false
+  segments: 
+  - 0
+  - 1
+  - 0
+  version: 0.1.0
+platform: ruby
+authors: 
+- Coroutine
+- Tim Lowrimore
+- John Dugan
+autorequire: 
+bindir: bin
+cert_chain: []
+
+date: 2010-07-29 00:00:00 -05:00
+default_executable: 
+dependencies: 
+- !ruby/object:Gem::Dependency 
+  name: actionpack
+  prerelease: false
+  requirement: &id001 !ruby/object:Gem::Requirement 
+    none: false
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        hash: 11
+        segments: 
+        - 2
+        - 3
+        - 4
+        version: 2.3.4
+  type: :runtime
+  version_requirements: *id001
+- !ruby/object:Gem::Dependency 
+  name: activesupport
+  prerelease: false
+  requirement: &id002 !ruby/object:Gem::Requirement 
+    none: false
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        hash: 11
+        segments: 
+        - 2
+        - 3
+        - 4
+        version: 2.3.4
+  type: :development
+  version_requirements: *id002
+description: Delayed Form Observer provides Rails with timed form observers that do not create race conditions.
+email: gems@coroutine.com
+executables: []
+
+extensions: []
+
+extra_rdoc_files: 
+- README
+files: 
+- .gitignore
+- .specification
+- MIT-LICENSE
+- README
+- Rakefile
+- VERSION
+- delayed_form_observer.gemspec
+- generators/delayed_form_observer/delayed_form_observer_generator.rb
+- generators/delayed_form_observer/templates/prototype_extension.js
+- init.rb
+- lib/delayed_form_observer.rb
+- lib/delayed_form_observer/helpers.rb
+- lib/generators/delayed_form_observer/delayed_form_observer_generator.rb
+- lib/generators/delayed_form_observer/templates/prototype_extension.js
+- rails/init.rb
+- test/delayed_form_observer_test.rb
+- test/test_helper.rb
+has_rdoc: true
+homepage: http://github.com/coroutine/delayed_form_observer
+licenses: []
+
+post_install_message: 
+rdoc_options: 
+- --charset=UTF-8
+require_paths: 
+- lib
+required_ruby_version: !ruby/object:Gem::Requirement 
+  none: false
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      hash: 3
+      segments: 
+      - 0
+      version: "0"
+required_rubygems_version: !ruby/object:Gem::Requirement 
+  none: false
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      hash: 3
+      segments: 
+      - 0
+      version: "0"
+requirements: []
+
+rubyforge_project: 
+rubygems_version: 1.3.7
+signing_key: 
+specification_version: 3
+summary: Delayed Form Observer provides Rails with timed form observers that do not create race conditions.
+test_files: 
+- test/delayed_form_observer_test.rb
+- test/test_helper.rb
+
