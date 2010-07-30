@@ -29,7 +29,7 @@ end
 begin
   Jeweler::Tasks.new do |gemspec|
     gemspec.authors           = ["Coroutine", "Tim Lowrimore", "John Dugan"]
-    gemspec.description       = "Delayed Form Observer provides Rails with timed form observers that do not create race conditions."
+    gemspec.description       = "Delayed Form Observer provides Rails with timed form observers that do not create race conditions. The gem extends Prototype and adds a Rails PrototypeHelper to use this new object."
     gemspec.email             = "gems@coroutine.com"
     gemspec.homepage          = "http://github.com/coroutine/delayed_form_observer"
     gemspec.name              = "delayed_form_observer"
@@ -39,7 +39,7 @@ begin
     gemspec.add_development_dependency("activesupport", ">=2.3.4")
     
     gemspec.files.include("generators/**/*", "lib/**/*")
-    gemspec.files.include("test/**/*.rb")
+    gemspec.files.include("test/**/*")
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError

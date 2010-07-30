@@ -1,0 +1,110 @@
+= Delayed Form Observer
+
+Delayed Form Observer eliminates a race condition in a common Rails search implementation.
+
+Large lists are often made more manageable by positioning a search textbox above the list 
+and attaching a Prototype timed observer to the textbox.  A javascript object is checking 
+the textbox for changes and remotely submitting the search form every so many milliseconds.
+The user experiences this as a list whose items change with every keystroke.
+
+The pattern works fine as long as the search query is working against a simple dataset. The
+asynchronous requests come back in the same order they are sent.
+
+But if the dataset is not simple, search #1 might return *after* search #2.  A user who types
+in "J" then "o" initiates two searches against a list of contacts.  "J" matches both Jim and
+John; "Jo" only matches John.  But since it is easier for the database to return fewer records,
+what if we get [John] before we get [Jim,John]?  The textbox will show "Jo" but the list will
+show Jim and John.  Oops.
+
+
+== A Gap in Prototype
+
+The problem exists primarily because Prototype only offers two basic kinds of observers: timed 
+observers and event-driven observers.  
+
+We've already explained the issue with the timed observer.
+
+Event-driven observers don't result in race conditions but they cause far too many search 
+requests. Every keystroke would result in a query.
+
+What we want is an event-driven observer with a delay before the request is made.  If a new 
+event arrives during the delay window, the previous event is abandoned and delay counter is 
+reset.
+
+Allow me to introduce you to Delayed Form Observer.
+
+
+== Usage
+
+The generator that comes with this gem adds the required Prototype extension to your application's 
+public javascripts directory. It also adds an ActionView Prototype helper for creating a form 
+observer that uses this new Prototype object.
+
+The helper uses the same arguments as <tt>observe_form</tt>.
+
+    # Observe changes to the search form
+    <%= delayed_observe_form 	"MySearchForm", :url => { :action => :index }, :method => :get, :frequency => 0.5
+
+
+If you need more help than that, maybe you should just look at the source code.  There are a ton of comments 
+in there.
+
+
+
+== Helpful Links
+
+* <b>Repository:</b> http://github.com/coroutine/delayed_form_observer
+* <b>Gem:</b> http://rubygems.org/gems/delayed_form_observer
+* <b>Authors:</b> http://coroutine.com
+
+
+
+== Prerequisites
+
+As you might have guessed, a gem that extends Prototype requires Prototype.  
+
+But since the gem was designed as a Rails extension, chances are Prototype 
+is already included.
+
+* <b>Prototype:</b> http://prototypejs.org
+
+
+
+== Installation & Generators
+
+Install as a gem from RubyGems.org and add a gem dependency in the appropriate file.
+
+	$ gem install delayed_form_observer
+
+Or install as a plugin.
+
+	$ script/plugin install git://github.com/coroutine/delayed_form_observer.git
+
+Either way, then generate the required javascript file.
+
+	$ script/generate delayed_form_observer
+	
+
+
+== License
+
+Copyright (c) 2010 {Coroutine LLC}[http://coroutine.com].
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

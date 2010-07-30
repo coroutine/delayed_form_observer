@@ -5,21 +5,20 @@
 
 Gem::Specification.new do |s|
   s.name = %q{delayed_form_observer}
-  s.version = "0.1.0"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Coroutine", "Tim Lowrimore", "John Dugan"]
-  s.date = %q{2010-07-29}
-  s.description = %q{Delayed Form Observer provides Rails with timed form observers that do not create race conditions.}
+  s.date = %q{2010-07-30}
+  s.description = %q{Delayed Form Observer provides Rails with timed form observers that do not create race conditions. The gem extends Prototype and adds a Rails PrototypeHelper to use this new object.}
   s.email = %q{gems@coroutine.com}
   s.extra_rdoc_files = [
-    "README"
+    "README.rdoc"
   ]
   s.files = [
     ".gitignore",
      ".specification",
      "MIT-LICENSE",
-     "README",
      "Rakefile",
      "VERSION",
      "delayed_form_observer.gemspec",
@@ -28,6 +27,8 @@ Gem::Specification.new do |s|
      "init.rb",
      "lib/delayed_form_observer.rb",
      "lib/delayed_form_observer/helpers.rb",
+     "lib/generators/delayed_form_observer/delayed_form_observer_generator.rb",
+     "lib/generators/delayed_form_observer/templates/prototype_extension.js",
      "rails/init.rb",
      "test/delayed_form_observer/helpers_test.rb",
      "test/test_helper.rb"

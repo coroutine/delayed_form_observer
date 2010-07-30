@@ -1,13 +1,13 @@
 --- !ruby/object:Gem::Specification 
 name: delayed_form_observer
 version: !ruby/object:Gem::Version 
-  hash: 27
+  hash: 23
   prerelease: false
   segments: 
   - 0
-  - 1
+  - 2
   - 0
-  version: 0.1.0
+  version: 0.2.0
 platform: ruby
 authors: 
 - Coroutine
@@ -17,7 +17,7 @@ autorequire:
 bindir: bin
 cert_chain: []
 
-date: 2010-07-29 00:00:00 -05:00
+date: 2010-07-30 00:00:00 -05:00
 default_executable: 
 dependencies: 
 - !ruby/object:Gem::Dependency 
@@ -52,19 +52,18 @@ dependencies:
         version: 2.3.4
   type: :development
   version_requirements: *id002
-description: Delayed Form Observer provides Rails with timed form observers that do not create race conditions.
+description: Delayed Form Observer provides Rails with timed form observers that do not create race conditions. The gem extends Prototype and adds a Rails PrototypeHelper to use this new object.
 email: gems@coroutine.com
 executables: []
 
 extensions: []
 
 extra_rdoc_files: 
-- README
+- README.rdoc
 files: 
 - .gitignore
 - .specification
 - MIT-LICENSE
-- README
 - Rakefile
 - VERSION
 - delayed_form_observer.gemspec
@@ -73,9 +72,12 @@ files:
 - init.rb
 - lib/delayed_form_observer.rb
 - lib/delayed_form_observer/helpers.rb
+- lib/generators/delayed_form_observer/delayed_form_observer_generator.rb
+- lib/generators/delayed_form_observer/templates/prototype_extension.js
 - rails/init.rb
 - test/delayed_form_observer/helpers_test.rb
 - test/test_helper.rb
+- README.rdoc
 has_rdoc: true
 homepage: http://github.com/coroutine/delayed_form_observer
 licenses: []
