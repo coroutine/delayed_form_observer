@@ -27,7 +27,7 @@ observer that uses this new Prototype object.
 The helper uses the same arguments as <tt>observe_form</tt>.
 
     # Observe changes to the search form
-    <%= delayed_observe_form 	"MySearchForm", :url => { :action => :index }, :method => :get, :frequency => 0.5
+    <%= delayed_observe_form "MySearchForm", :url => { :action => :index }, :method => :get, :frequency => 0.5
 
 
 If you need more help than that, maybe you should just look at the source code.  There are a ton of comments 
