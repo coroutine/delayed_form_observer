@@ -5,12 +5,12 @@ Delayed Form Observer eliminates a race condition in a common Rails search imple
 Large lists are often made more manageable by positioning a search textbox above the list 
 and attaching a Prototype timed observer to the textbox.  A javascript object is checking 
 the textbox for changes and remotely submitting the search form every so many milliseconds.
-The user experiences this as a list whose items change with every keystroke.
+The user experiences this as a list whose items change with every few keystrokes.
 
 The pattern works fine as long as the search query is working against a simple dataset. The
 asynchronous requests come back in the same order they are sent.
 
-But if the dataset is not simple, search #1 might return *after* search #2.  A user who types
+But if the dataset is not simple, search #1 might return after search #2.  A user who types
 in "J" then "o" initiates two searches against a list of contacts.  "J" matches both Jim and
 John; "Jo" only matches John.  But since it is easier for the database to return fewer records,
 what if we get [John] before we get [Jim,John]?  The textbox will show "Jo" but the list will
