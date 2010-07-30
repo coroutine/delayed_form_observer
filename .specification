@@ -73,10 +73,8 @@ files:
 - init.rb
 - lib/delayed_form_observer.rb
 - lib/delayed_form_observer/helpers.rb
-- lib/generators/delayed_form_observer/delayed_form_observer_generator.rb
-- lib/generators/delayed_form_observer/templates/prototype_extension.js
 - rails/init.rb
-- test/delayed_form_observer_test.rb
+- test/delayed_form_observer/helpers_test.rb
 - test/test_helper.rb
 has_rdoc: true
 homepage: http://github.com/coroutine/delayed_form_observer
@@ -113,6 +111,6 @@ signing_key:
 specification_version: 3
 summary: Delayed Form Observer provides Rails with timed form observers that do not create race conditions.
 test_files: 
-- test/delayed_form_observer_test.rb
+- test/delayed_form_observer/helpers_test.rb
 - test/test_helper.rb
 

@@ -28,10 +28,8 @@ Gem::Specification.new do |s|
      "init.rb",
      "lib/delayed_form_observer.rb",
      "lib/delayed_form_observer/helpers.rb",
-     "lib/generators/delayed_form_observer/delayed_form_observer_generator.rb",
-     "lib/generators/delayed_form_observer/templates/prototype_extension.js",
      "rails/init.rb",
-     "test/delayed_form_observer_test.rb",
+     "test/delayed_form_observer/helpers_test.rb",
      "test/test_helper.rb"
   ]
   s.homepage = %q{http://github.com/coroutine/delayed_form_observer}
@@ -40,7 +38,7 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.3.7}
   s.summary = %q{Delayed Form Observer provides Rails with timed form observers that do not create race conditions.}
   s.test_files = [
-    "test/delayed_form_observer_test.rb",
+    "test/delayed_form_observer/helpers_test.rb",
      "test/test_helper.rb"
   ]
 
