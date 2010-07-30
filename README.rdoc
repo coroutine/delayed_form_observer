@@ -17,22 +17,6 @@ what if we get [John] before we get [Jim,John]?  The textbox will show "Jo" but 
 show Jim and John.  Oops.
 
 
-== A Gap in Prototype
-
-The problem exists primarily because Prototype only offers two basic kinds of observers: timed 
-observers and event-driven observers.  
-
-We've already explained the issue with the timed observer.
-
-Event-driven observers don't result in race conditions but they cause far too many search 
-requests. Every keystroke would result in a query.
-
-What we want is an event-driven observer with a delay before the request is made.  If a new 
-event arrives during the delay window, the previous event is abandoned and delay counter is 
-reset.
-
-Allow me to introduce you to Delayed Form Observer.
-
 
 == Usage
 
