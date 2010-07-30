@@ -1,4 +1,5 @@
-require "test_helper"
+require "test/test_helper"
+
 
 class HelpersTest < ActiveSupport::TestCase
   # Replace this with your real tests.
