@@ -1,6 +1,6 @@
 = Delayed Form Observer
 
-Delayed Form Observer eliminates a race condition in a common Rails search implementation.
+Delayed Form Observer mitigates a race condition in a common Rails search implementation.
 
 Large lists are often made more manageable by positioning a search textbox above the list 
 and attaching a Prototype timed observer to the textbox.  A javascript object is checking 
@@ -16,9 +16,41 @@ John; "Jo" only matches John.  But since it is easier for the database to return
 what if we get [John] before we get [Jim,John]?  The textbox will show "Jo" but the list will
 show Jim and John.  Oops.
 
+Delayed Form Observer eliminates this condition for all common applications by ignoring 
+form changes until the user stops updating the form contents for a cycle equal to the
+observation frequency.  In practical terms, this means the form observer will only make one 
+remote request for a contiguous sequence of keystrokes.
 
 
-== Usage
+
+== Usage (Rails 3)
+
+The generator that comes with this gem adds the required Prototype extension to your application's 
+public javascripts directory. Just hook up the observer using unobtrusive javascript.
+
+    // Make search form observer
+    window.observe("load", function() {
+        var form =  $('my_search_form');
+        var fo   =  new Form.DelayedObserver(
+                        form, 
+                        0.2,
+                        function(element, value) {
+                            new Ajax.Request(
+                                form.action, 
+                                { 
+                                    asynchronous: true, 
+                                    evalScripts:  true, 
+                                    method:       "get",
+                                    parameters:   value
+                                }
+                            );
+                        }
+        );
+    });
+
+
+
+== Usage (Rails 2)
 
 The generator that comes with this gem adds the required Prototype extension to your application's 
 public javascripts directory. It also adds an ActionView Prototype helper for creating a form 
@@ -27,11 +59,7 @@ observer that uses this new Prototype object.
 The helper uses the same arguments as <tt>observe_form</tt>.
 
     # Observe changes to the search form
-    <%= delayed_observe_form "MySearchForm", :url => { :action => :index }, :method => :get, :frequency => 0.5
-
-
-If you need more help than that, maybe you should just look at the source code.  There are a ton of comments 
-in there.
+    <%= delayed_observe_form "MySearchForm", :url => { :action => :index }, :method => :get, :frequency => 0.5 %>
 
 
 
@@ -54,7 +82,22 @@ is already included.
 
 
 
-== Installation & Generators
+== Installation & Generators (Rails 3)
+
+Install me from RubyGems.org by adding a gem dependency to your Gemfile.  Bundler does 
+the rest.
+
+	gem "delayed_form_observer"
+	
+	$ bundle install
+
+Then generate the required javascript file.
+
+	$ rails g delayed_form_observer
+	
+
+
+== Installation & Generators (Rails 2)
 
 Install as a gem from RubyGems.org and add a gem dependency in the appropriate file.
 
@@ -68,6 +111,19 @@ Either way, then generate the required javascript file.
 
 	$ script/generate delayed_form_observer
 	
+
+
+== Gemroll
+
+Other gems by Coroutine include:
+
+* {acts_as_current}[http://github.com/coroutine/acts_as_current]
+* {acts_as_label}[http://github.com/coroutine/acts_as_label]
+* {acts_as_list_with_sti_support}[http://github.com/coroutine/acts_as_list_with_sti_support]
+* {kenny_dialoggins}[http://github.com/coroutine/kenny_dialoggins]
+* {michael_hintbuble}[http://github.com/coroutine/michael_hintbuble]
+* {tiny_navigation}[http://github.com/coroutine/tiny_navigation]
+
 
 
 == License
